@@ -44,7 +44,7 @@ header {
 
 
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), 80%, rgba(0, 0, 0, 0.2)), url('/images/hero.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.2), 80%, rgba(0, 0, 0, 0.2)), url('../images/hero.jpg');
     background-repeat: no-repeat;
     background-position: 20% 35%;
     color: #fff;
