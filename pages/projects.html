@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="../css/projects.css">
+    <link rel="stylesheet" href="../css/prism.css">
+</head>
+<body>
+    <header>
+        <div class="menu-icon">&#9776;</div>
+        <nav>
+            <ul id="navbar">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../pages/resume.html">Resume</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+                <li><a href="../pages/about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="about">
+        <div class="about-content">
+            <div class="left-column">
+                <h1></h1>
+                <p>In terms of functionality, I am proficient in a variety 
+                    of programming languages that enable me to breathe life into designs and build 
+                    robust applications. Python is my Swiss army knife for backend development, 
+                    with its simplicity and versatility allowing me to develop scalable and maintainable 
+                    solutions across various domains. JavaScript is my language of choice for frontend development, where I leverage its 
+                    dynamic nature and rich ecosystem of frameworks like React and Vite.js to create engaging
+                     user interfaces. TypeScript further enhances my development workflow by providing static
+                      typing and advanced tooling, ensuring code reliability and facilitating collaboration
+                       in larger projects.</p>
+            </div>
+            <div class="right-column">
+                <h3>This python program implements a simple version of the Eliza chatbot ------</h3>
+                <div class="media-box">
+                    <pre>
+                        <code class="language-python code-box">
+
+import re
+import random
+
+                                                                # Dictionary of patterns and responses
+patterns_responses = [
+    (r'I need (.*)', ["Why do you need {0}?", "Would it really help you to get {0}?", "Are you sure you need {0}?"]),
+    (r'Why don\'?t you ([^\?]*)\??', ["Do you really think I don't {0}?", "Perhaps eventually I will {0}.", "Do you really want me to {0}?"]),
+    (r'Why can\'?t I ([^\?]*)\??', ["Do you think you should be able to {0}?", "If you could {0}, what would you do?", "I don't know -- why can't you {0}?"]),
+    (r'I can\'?t (.*)', ["How do you know you can't {0}?", "Perhaps you could {0} if you tried.", "What would it take for you to {0}?"]),
+    (r'I am (.*)', ["Did you come to me because you are {0}?", "How long have you been {0}?", "How does being {0} make you feel?"]),
+    (r'I\'?m (.*)', ["How does being {0} make you feel?", "Do you enjoy being {0}?", "Why do you tell me you're {0}?", "Why do you think you're {0}?"]),
+    (r'Are you ([^\?]*)\??', ["Why are you interested in whether I am {0} or not?", "Would you prefer if I weren't {0}?", "Perhaps in your fantasies I am {0}."]),
+    (r'What (.*)', ["Why do you ask?", "How would an answer to that help you?", "What do you think?"]),
+    (r'How (.*)', ["How do you suppose?", "Perhaps you can answer your own question.", "What is it you're really asking?"]),
+    (r'Because (.*)', ["Is that the real reason?", "What other reasons come to mind?", "Does that reason seem to explain anything else?"]),
+    (r'(.*) sorry (.*)', ["There are many times when no apology is needed.", "What feelings do you have when you apologize?", "Apologies are not necessary."]),
+    (r'Hello(.*)', ["Hello! What's on your mind today?", "Hi there! How can I help you?", "Hi! What brings you here today?"]),
+    (r'(.*)', ["Please tell me more.", "Let's change focus a bit... Tell me about your family.", "Can you elaborate on that?", "Why do you say that {0}?", "I see.", "Very interesting.", "I'm not sure I understand fully."]),
+]
+
+def respond_to_message(message):
+    """Generate a response to the user's message"""
+    for pattern, responses_list in patterns_responses:
+        match = re.match(pattern, message.strip(), re.IGNORECASE)
+        if match:
+            response = random.choice(responses_list).format(*[re.sub(r'\bi\b', 'you', part) for part in match.groups()])
+            return response
+    return "I'm not sure I understand you fully."
+
+if __name__ == "__main__":
+    print("Hello, I'm Eliza. How can I help you today?")
+    print("You can type 'quit' to end the conversation.")
+    
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == 'quit':
+            print("Goodbye!")
+            break
+        response = respond_to_message(user_input)
+        print("Eliza:", response)
+                        </code>
+                    </pre>
+                </div>
+                <a href="https://github.com/MachineCreation" class="work-button">View MY Github</a>
+            </div>
+            
+        </div>
+    </section>
+    <section class="about">
+        <div class="about-content">
+            <div class="right-column">
+                <h3>This python program simulates a basic stock trading bot ------</h3>
+                <div class="media-box">
+                    <pre>
+                        <code class="language-python code-box">
+
+                            import yfinance as yf
+
+                            # Function to fetch historical stock data
+def fetch_stock_data(ticker, start_date, end_date):
+stock_data = yf.download(ticker, start=start_date, end=end_date)
+return stock_data
+
+                            # Function to calculate moving averages
+def calculate_moving_average(data, window):
+return data['Close'].rolling(window=window).mean()
+
+                            # Function to simulate trading strategy
+def simulate_trading_strategy(data, short_window, long_window):
+data['Short_MA'] = calculate_moving_average(data, short_window)
+data['Long_MA'] = calculate_moving_average(data, long_window)
+data['Signal'] = 0
+
+                            # Generate buy/sell signals based on crossover of moving averages
+data.loc[data['Short_MA'] > data['Long_MA'], 'Signal'] = 1
+data.loc[data['Short_MA'] < data['Long_MA'], 'Signal'] = -1
+
+return data
+
+                            # Function to backtest trading strategy
+def backtest_strategy(data):
+initial_capital = 10000
+positions = 0
+capital = initial_capital
+
+for index, row in data.iterrows():
+if row['Signal'] == 1 and capital >= row['Close']:
+positions = capital // row['Close']
+capital -= positions * row['Close']
+elif row['Signal'] == -1 and positions > 0:
+capital += positions * row['Close']
+positions = 0
+
+final_portfolio_value = capital + positions * data.iloc[-1]['Close']
+return final_portfolio_value
+
+if __name__ == "__main__":
+ticker = 'AAPL'
+start_date = '2023-01-01'
+end_date = '2024-01-01'
+short_window = 50
+long_window = 200
+
+                            # Fetch stock data
+stock_data = fetch_stock_data(ticker, start_date, end_date)
+
+                            # Simulate trading strategy
+strategy_data = simulate_trading_strategy(stock_data, short_window, long_window)
+
+                            # Backtest trading strategy
+final_portfolio_value = backtest_strategy(strategy_data)
+print(f"Final Portfolio Value: ${final_portfolio_value:.2f}")
+                        </code>
+                    </pre>
+                </div>
+                <a href="./resume.html" class="work-button">View My Resume</a>
+            </div>
+            <div class="left-column">
+                <h1></h1>
+                <p>In the realm of design, I bring a versatile skill 
+                    set honed through experience and a genuine passion for creating visually
+                     appealing and user-friendly interfaces. Figma is my go-to tool for
+                      UI/UX design, where I meticulously craft wireframes, prototypes,
+                       and high-fidelity designs. With a deep understanding of user behavior
+                        and interaction design principles, I ensure that every pixel serves a
+                         purpose in enhancing the user experience.  Blender is my gateway to the world of 3D modeling and animation, where I push the
+                         boundaries of creativity by crafting immersive environments and stunning visual
+                          effects. Additionally, Fusion 360 rounds out my design toolkit, empowering me to
+                           seamlessly transition from concept to manufacturing with its comprehensive CAD/CAM
+                            capabilities.</p>
+            </div>            
+        </div>
+    </section>
+    <section class="intro">
+        <p> </p>
+    </section>
+    <footer>
+        <p>Copyright © Joseph Egan 2024</p>
+        <ul>
+            <li><a href="https://www.linkedin.com/in/josephbegan/">LinkedIn</a></li>
+            <li><a href="https://github.com/MachineCreation">GitHub</a></li>
+        </ul>
+    </footer>
+<script src="../js/main.js"></script>
+<script src="../js/prism.js"></script>
+</body>
+</html>

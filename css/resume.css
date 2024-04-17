@@ -43,8 +43,8 @@ header {
 }
 
 
-.hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), 80%, rgba(0, 0, 0, 0.2)), url('../images/hero.jpg');
+.about {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), 80%, rgba(0, 0, 0, 0.2)), url('/images/about.jpg');
     background-repeat: no-repeat;
     background-position: 20% 35%;
     color: #fff;
@@ -55,7 +55,7 @@ header {
     height: 40vh;
 }
 
-.hero-content {
+.about-content {
     display: flex;
     justify-content: space-between;
     width: 100%; 
@@ -108,7 +108,7 @@ header {
     
     
 
-    .hero-content {
+    .about-content {
         flex-direction: column;
     }
 
@@ -174,7 +174,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
