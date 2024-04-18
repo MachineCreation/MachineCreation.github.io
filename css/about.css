@@ -67,7 +67,7 @@ header {
     flex-basis: 30%;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    padding: 0px 10px 0px;
+    padding: 0px 10px 10px ;
 }
 
 .left-column {
