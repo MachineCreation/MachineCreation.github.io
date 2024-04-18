@@ -44,7 +44,7 @@ header {
 
 
 .about {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), 80%, rgba(0, 0, 0, 0.2)), url('/images/about.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.2), 80%, rgba(0, 0, 0, 0.2)), url('/images/colmar.jpg');
     background-repeat: no-repeat;
     background-position: 20% 35%;
     color: #fff;
@@ -52,7 +52,7 @@ header {
     align-items: center;
     justify-content: space-around;
     padding: 100px 20px;
-    height: 40vh;
+    height: 60vh;
 }
 
 .about-content {
@@ -65,12 +65,15 @@ header {
 
 .left-column, .right-column {
     flex-basis: 30%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 0px 10px 0px;
 }
 
 .left-column {
     text-align: left;
     border-radius: 10px;
-    padding: 0px 10px 0px;
+    
 }
 .left-column h1 {
     margin-bottom: 60px;
